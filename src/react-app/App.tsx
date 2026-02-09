@@ -33,7 +33,7 @@ function BioMarkdown({ text }: { text: string }) {
 
 function App() {
 	return (
-		<div className="min-h-screen max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+		<div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
 			<nav className="flex items-center gap-3 py-6">
 				<a
 					href="/"
@@ -50,7 +50,7 @@ function App() {
 							<h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
 								Bio
 							</h2>
-							<div className="space-y-4 text-md text-foreground leading-[1.8]">
+							<div className="space-y-4 text-md text-foreground">
 								{content.bio.map((paragraph, i) => (
 									<BioMarkdown key={i} text={paragraph} />
 								))}
@@ -90,7 +90,7 @@ function App() {
 								<h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
 									{list.title}
 								</h2>
-								<ul className="space-y-1 text-md text-foreground">
+								<ul className="text-md text-foreground">
 									{list.items.map((item) => (
 										<li key={item}>{item}</li>
 									))}
@@ -106,15 +106,15 @@ function App() {
 						<img
 							src={content.photo.src}
 							alt={content.photo.alt}
+							width={800}
+							height={800}
+							loading="lazy"
+							decoding="async"
 							className="w-full rounded-sm"
 						/>
 					</section>
 				</div>
 			</main>
-
-			<footer className="py-6 text-sm uppercase tracking-[0.2em] text-foreground">
-				&copy; {new Date().getFullYear()}
-			</footer>
 		</div>
 	);
 }
