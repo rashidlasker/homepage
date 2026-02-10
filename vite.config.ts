@@ -5,5 +5,5 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { cloudflare } from "@cloudflare/vite-plugin";
 
 export default defineConfig({
-	plugins: [tailwindcss(), tsconfigPaths(), react(), cloudflare()],
+  plugins: [tailwindcss(), tsconfigPaths(), react(), cloudflare()],
 });
