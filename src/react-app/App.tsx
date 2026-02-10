@@ -19,7 +19,7 @@ function BioMarkdown({ text }: { text: string }) {
 						href={href}
 						target={href?.startsWith("mailto:") ? undefined : "_blank"}
 						rel={href?.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-						className="text-accent hover:text-foreground transition-colors border-b border-current"
+						className="text-accent hover:text-accent-hover transition-colors"
 					>
 						{children}
 					</a>
@@ -37,7 +37,7 @@ function App() {
 			<nav className="flex items-center gap-3 py-6">
 				<a
 					href="/"
-					className="text-2xl hover:text-accent transition-colors"
+					className="text-2xl hover:text-accent-hover transition-colors"
 				>
 					{content.name}
 				</a>
@@ -72,9 +72,9 @@ function App() {
 											target="_blank"
 											rel="noopener noreferrer"
 											title={s.name}
-											className="text-foreground hover:text-accent transition-colors"
+											className="text-accent hover:text-accent-hover transition-colors"
 										>
-											<svg className="size-9" viewBox="12 12 40 40">
+											<svg className="size-10" viewBox="12 12 40 40">
 												<path fill="currentColor" d={path} />
 											</svg>
 										</a>
