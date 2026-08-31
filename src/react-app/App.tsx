@@ -107,27 +107,25 @@ function Log() {
 function App() {
   return (
     <div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
-      <nav className="py-6">
-        <a
-          href="/"
-          className="text-2xl hover:text-accent-hover transition-colors"
-        >
-          {content.name}
-        </a>
-      </nav>
-
       <main className="py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[2fr_1fr_1fr] gap-10">
-          <section className="sm:col-span-2 xl:col-span-1 xl:max-w-[550px]">
-            <div className="mb-8">
+          <section className="xl:max-w-[550px] space-y-8">
+            <a
+              href="/"
+              className="inline-block text-2xl hover:text-accent-hover transition-colors"
+            >
+              {content.name}
+            </a>
+            <div>
               <SectionLabel>Bio</SectionLabel>
-              <div className="space-y-4 text-md text-foreground">
-                {content.bio.map((paragraph, i) => (
-                  <BioMarkdown key={i} text={paragraph} />
-                ))}
+              <div className="text-md text-foreground">
+                <BioMarkdown text={content.bio} />
               </div>
             </div>
+            <Photo />
+          </section>
 
+          <section className="space-y-8">
             <div>
               <SectionLabel>Social</SectionLabel>
               <div className="flex gap-5 items-center">
@@ -151,9 +149,6 @@ function App() {
                 })}
               </div>
             </div>
-          </section>
-
-          <section className="space-y-8">
             {content.lists.map((list) => (
               <div key={list.title}>
                 <SectionLabel>{list.title}</SectionLabel>
@@ -164,7 +159,6 @@ function App() {
                 </ul>
               </div>
             ))}
-            <Photo />
           </section>
 
           <Log />
