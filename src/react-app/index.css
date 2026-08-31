@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (@media (prefers-color-scheme: dark));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -84,39 +84,41 @@
   --sidebar-ring: #035aa6;
 }
 
-.dark {
-  --background: #1C1814;
-  --foreground: #ffffff;
-  --card: #2A2420;
-  --card-foreground: #ffffff;
-  --popover: #2A2420;
-  --popover-foreground: #ffffff;
-  --primary: #ffffff;
-  --primary-foreground: #1C1814;
-  --secondary: #342E28;
-  --secondary-foreground: #E8DFC8;
-  --muted: #342E28;
-  --muted-foreground: #9E8E7A;
-  --accent: #00a8b8;
-  --accent-hover: #40bad5;
-  --accent-foreground: #1C1814;
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: #4A3F35;
-  --input: #4A3F35;
-  --ring: #5B9BD5;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: #2A2420;
-  --sidebar-foreground: #E8DFC8;
-  --sidebar-primary: #5B9BD5;
-  --sidebar-primary-foreground: #1C1814;
-  --sidebar-accent: #342E28;
-  --sidebar-accent-foreground: #E8DFC8;
-  --sidebar-border: #4A3F35;
-  --sidebar-ring: #5B9BD5;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1C1814;
+    --foreground: #ffffff;
+    --card: #2A2420;
+    --card-foreground: #ffffff;
+    --popover: #2A2420;
+    --popover-foreground: #ffffff;
+    --primary: #ffffff;
+    --primary-foreground: #1C1814;
+    --secondary: #342E28;
+    --secondary-foreground: #E8DFC8;
+    --muted: #342E28;
+    --muted-foreground: #9E8E7A;
+    --accent: #00a8b8;
+    --accent-hover: #40bad5;
+    --accent-foreground: #1C1814;
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: #4A3F35;
+    --input: #4A3F35;
+    --ring: #5B9BD5;
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: #2A2420;
+    --sidebar-foreground: #E8DFC8;
+    --sidebar-primary: #5B9BD5;
+    --sidebar-primary-foreground: #1C1814;
+    --sidebar-accent: #342E28;
+    --sidebar-accent-foreground: #E8DFC8;
+    --sidebar-border: #4A3F35;
+    --sidebar-ring: #5B9BD5;
+  }
 }
 
 @layer base {

@@ -28,5 +28,6 @@
 	"photo": {
 		"src": "/dolomites.jpg",
 		"alt": "Rashid Lasker in the Dolomites"
-	}
+	},
+	"log": []
 }
