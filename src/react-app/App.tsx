@@ -126,6 +126,16 @@ function App() {
           </section>
 
           <section className="space-y-8">
+            {content.lists.map((list) => (
+              <div key={list.title}>
+                <SectionLabel>{list.title}</SectionLabel>
+                <ul className="text-md text-foreground">
+                  {list.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             <div>
               <SectionLabel>Social</SectionLabel>
               <div className="flex gap-5 items-center">
@@ -149,16 +159,6 @@ function App() {
                 })}
               </div>
             </div>
-            {content.lists.map((list) => (
-              <div key={list.title}>
-                <SectionLabel>{list.title}</SectionLabel>
-                <ul className="text-md text-foreground">
-                  {list.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </section>
 
           <Log />
