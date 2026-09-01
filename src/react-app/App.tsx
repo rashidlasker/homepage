@@ -85,9 +85,9 @@ function Log() {
                 <img
                   src={entry.thumbnail}
                   alt=""
-                  width={32}
-                  height={32}
-                  className="size-8 object-cover rounded-sm shrink-0 mt-0.5"
+                  width={40}
+                  height={40}
+                  className="size-10 object-cover rounded-sm shrink-0 mt-0.5"
                 />
               ) : null}
               <p>

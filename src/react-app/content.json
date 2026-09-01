@@ -25,5 +25,11 @@
 		"src": "/dolomites.jpg",
 		"alt": "Rashid Lasker in the Dolomites"
 	},
-	"log": []
+	"log": [
+		{
+			"date": "2023",
+			"text": "Dolomites 2023",
+			"thumbnail": "/log/dolomites-2023.jpg"
+		}
+	]
 }
