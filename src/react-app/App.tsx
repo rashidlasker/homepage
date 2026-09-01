@@ -19,6 +19,12 @@ function newestFirst(entries: LogEntry[]): LogEntry[] {
   return [...entries].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 }
 
+function logCaption(entry: LogEntry): { year: string; title: string } {
+  const year = entry.date.slice(0, 4);
+  const title = entry.text.replace(new RegExp(`\\s+${year}\\s*$`), "").trim();
+  return { year, title: title || entry.text };
+}
+
 function SectionLabel({ children }: { children: string }) {
   return (
     <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
@@ -70,34 +76,38 @@ function Log() {
   const entries = newestFirst(content.log);
 
   return (
-    <section>
-      <SectionLabel>Log</SectionLabel>
+    <section className="min-w-0 xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto">
+      <div className="xl:sticky xl:top-0 bg-background">
+        <SectionLabel>Log</SectionLabel>
+      </div>
       {entries.length === 0 ? (
         <p className="text-md text-muted-foreground">Nothing yet.</p>
       ) : (
-        <ul className="space-y-3 text-md text-foreground">
-          {entries.map((entry) => (
-            <li
-              key={`${entry.date}-${entry.text}`}
-              className="flex gap-3 items-start"
-            >
-              {entry.thumbnail ? (
-                <img
-                  src={entry.thumbnail}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="size-10 object-cover rounded-sm shrink-0 mt-0.5"
-                />
-              ) : null}
-              <p>
-                <time dateTime={entry.date} className="text-muted-foreground">
-                  {entry.date}
-                </time>{" "}
-                {entry.text}
-              </p>
-            </li>
-          ))}
+        <ul className="space-y-8">
+          {entries.map((entry) => {
+            const { year, title } = logCaption(entry);
+            return (
+              <li key={`${entry.date}-${entry.text}`}>
+                <figure>
+                  {entry.thumbnail ? (
+                    <img
+                      src={entry.thumbnail}
+                      alt={entry.text}
+                      width={360}
+                      height={360}
+                      className="w-full rounded-sm"
+                    />
+                  ) : null}
+                  <figcaption className="mt-3 text-md text-foreground">
+                    <time dateTime={entry.date} className="text-muted-foreground">
+                      {year}
+                    </time>{" "}
+                    {title}
+                  </figcaption>
+                </figure>
+              </li>
+            );
+          })}
         </ul>
       )}
     </section>
@@ -108,7 +118,7 @@ function App() {
   return (
     <div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
       <main className="py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 xl:items-start">
           <section className="space-y-8">
             <a
               href="/"
