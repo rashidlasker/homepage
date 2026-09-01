@@ -118,14 +118,14 @@ function App() {
   return (
     <div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
       <main className="py-6">
+        <a
+          href="/"
+          className="inline-block text-2xl hover:text-accent-hover transition-colors mb-8"
+        >
+          {content.name}
+        </a>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 xl:items-start">
           <section className="space-y-8">
-            <a
-              href="/"
-              className="inline-block text-2xl hover:text-accent-hover transition-colors"
-            >
-              {content.name}
-            </a>
             <div>
               <SectionLabel>Bio</SectionLabel>
               <div className="text-md text-foreground">
