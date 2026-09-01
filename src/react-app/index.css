@@ -49,7 +49,7 @@
 }
 
 :root {
-  --default-font-family: "Roboto Mono", ui-monospace, monospace;
+  --default-font-family: "Courier Prime", ui-monospace, monospace;
   --radius: 0.25rem;
   --background: #ffffff;
   --foreground: #1a1a1a;
@@ -83,26 +83,6 @@
   --sidebar-accent-foreground: #3D3225;
   --sidebar-border: #9E8E7A;
   --sidebar-ring: #035aa6;
-}
-
-html[data-font="roboto"] {
-  --default-font-family: "Roboto Mono", ui-monospace, monospace;
-}
-
-html[data-font="special-elite"] {
-  --default-font-family: "Special Elite", ui-monospace, monospace;
-}
-
-html[data-font="courier-prime"] {
-  --default-font-family: "Courier Prime", ui-monospace, monospace;
-}
-
-html[data-font="ibm-plex"] {
-  --default-font-family: "IBM Plex Mono", ui-monospace, monospace;
-}
-
-html[data-font="space-mono"] {
-  --default-font-family: "Space Mono", ui-monospace, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,6 +125,9 @@ html[data-font="space-mono"] {
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  html {
+    font-size: 106.25%;
   }
   body {
     @apply bg-background text-foreground;
