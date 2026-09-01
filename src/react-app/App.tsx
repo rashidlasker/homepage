@@ -66,7 +66,7 @@ function Photo() {
         height={800}
         loading="lazy"
         decoding="async"
-        className="w-full max-w-[360px] rounded-sm"
+        className="w-full max-w-[360px]"
       />
     </div>
   );
@@ -95,7 +95,7 @@ function Log() {
                       alt={entry.text}
                       width={360}
                       height={360}
-                      className="w-full rounded-sm"
+                      className="w-full"
                     />
                   ) : null}
                   <figcaption className="mt-3 text-md text-foreground">
