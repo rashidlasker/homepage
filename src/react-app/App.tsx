@@ -108,7 +108,7 @@ function App() {
   return (
     <div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
       <main className="py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[minmax(0,34rem)_minmax(0,1fr)_minmax(0,1fr)] gap-x-6 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
           <section className="space-y-8">
             <a
               href="/"
