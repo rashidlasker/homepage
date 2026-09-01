@@ -127,11 +127,12 @@
     @apply border-border outline-ring/50;
   }
   html {
-    font-size: 106.25%;
+    font-size: 15.5px;
   }
   body {
     @apply bg-background text-foreground;
     font-family: var(--default-font-family);
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
