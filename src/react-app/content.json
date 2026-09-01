@@ -3,22 +3,46 @@
 	"resumeUrl": "https://www.docdroid.net/qwKrlFH/rashid-lasker-resume-colored-pdf",
 	"bio": "making tokens useful [@spacexai](https://x.com/spacexai)",
 	"social": [
-		{ "name": "GitHub", "url": "https://github.com/rashidlasker", "icon": "github" },
-		{ "name": "X", "url": "https://x.com/rashidlasker", "icon": "x" },
-		{ "name": "Spotify", "url": "https://open.spotify.com/user/22cxvog4zrc6ynlg4p26vbdtq", "icon": "spotify" }
+		{
+			"name": "GitHub",
+			"url": "https://github.com/rashidlasker",
+			"icon": "github"
+		},
+		{
+			"name": "X",
+			"url": "https://x.com/rashidlasker",
+			"icon": "x"
+		},
+		{
+			"name": "Spotify",
+			"url": "https://open.spotify.com/user/22cxvog4zrc6ynlg4p26vbdtq",
+			"icon": "spotify"
+		}
 	],
 	"lists": [
 		{
 			"title": "What I Do",
-			"items": ["Fullstack Development", "Product Engineering", "User Research"]
+			"items": [
+				"Fullstack Development",
+				"Product Engineering",
+				"User Research"
+			]
 		},
 		{
 			"title": "Books I Like",
-			"items": ["The Design of Everyday Things", "The Three-Body Problem", "The Overstory"]
+			"items": [
+				"The Design of Everyday Things",
+				"The Three-Body Problem",
+				"The Overstory"
+			]
 		},
 		{
 			"title": "Hobbies",
-			"items": ["Backpacking", "Snowboarding", "Coastal Foraging"]
+			"items": [
+				"Backpacking",
+				"Snowboarding",
+				"Coastal Foraging"
+			]
 		}
 	],
 	"photo": {
@@ -29,7 +53,7 @@
 		{
 			"date": "2026",
 			"text": "Russian River",
-			"thumbnail": "/log/russian-river-2026.jpg"
+			"thumbnail": "/log/russian-river-2026.png"
 		}
 	]
 }
