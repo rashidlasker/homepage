@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import content from "./content.json";
+
+type LogEntry = {
+  date: string;
+  text: string;
+  thumbnail?: string;
+};
 
 const SOCIAL_ICONS: Record<string, string> = {
   github:
@@ -9,6 +14,24 @@ const SOCIAL_ICONS: Record<string, string> = {
   spotify:
     "M39 37.7c-4.2-2.6-9.4-3.2-15.5-1.8-.5.1-.9.7-.8 1.2s.7.9 1.2.7q8.4-1.95 14.1 1.5c.5.3 1.1.1 1.4-.3.2-.4.1-1-.4-1.3m1.9-4.7c-4.9-3-12.2-3.9-18-2.1-.7.2-1 .9-.8 1.6s.9 1 1.6.8c5.1-1.5 11.6-.8 15.9 1.9.6.4 1.4.2 1.7-.4.4-.7.2-1.4-.4-1.8M32 48c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16m11-20.4c-5.9-3.5-15.3-3.9-21-2.1-.8.2-1.2 1.1-1 1.9s1.1 1.2 1.9 1c4.9-1.5 13.4-1.2 18.6 1.9.7.4 1.6.2 2.1-.5.3-.8.1-1.8-.6-2.2",
 };
+
+function newestFirst(entries: LogEntry[]): LogEntry[] {
+  return [...entries].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+}
+
+function logCaption(entry: LogEntry): { year: string; title: string } {
+  const year = entry.date.slice(0, 4);
+  const title = entry.text.replace(new RegExp(`\\s+${year}\\s*$`), "").trim();
+  return { year, title: title || entry.text };
+}
+
+function SectionLabel({ children }: { children: string }) {
+  return (
+    <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
+      {children}
+    </h2>
+  );
+}
 
 function BioMarkdown({ text }: { text: string }) {
   return (
@@ -32,88 +55,99 @@ function BioMarkdown({ text }: { text: string }) {
   );
 }
 
-function useSystemDark() {
-  const [dark, setDark] = useState(
-    () => window.matchMedia("(prefers-color-scheme: dark)").matches,
+function Photo() {
+  return (
+    <div>
+      <SectionLabel>Photo</SectionLabel>
+      <img
+        src={content.photo.src}
+        alt={content.photo.alt}
+        width={800}
+        height={800}
+        loading="lazy"
+        decoding="async"
+        className="w-full max-w-[360px]"
+      />
+    </div>
   );
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = (e: MediaQueryListEvent) => setDark(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  return dark;
 }
 
-function ThemeToggle() {
-  const systemDark = useSystemDark();
-  const [override, setOverride] = useState<boolean | null>(null);
-  const dark = override ?? systemDark;
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
+function Log() {
+  const entries = newestFirst(content.log);
 
   return (
-    <button
-      onClick={() => setOverride((o) => !(o ?? systemDark))}
-      className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-accent-hover cursor-pointer"
-      aria-label="Toggle theme"
-    >
-      {dark ? (
-        <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="5" />
-          <line x1="12" y1="1" x2="12" y2="3" />
-          <line x1="12" y1="21" x2="12" y2="23" />
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-          <line x1="1" y1="12" x2="3" y2="12" />
-          <line x1="21" y1="12" x2="23" y2="12" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-        </svg>
+    <section className="min-w-0 xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto">
+      <div className="xl:sticky xl:top-0 bg-background">
+        <SectionLabel>Log</SectionLabel>
+      </div>
+      {entries.length === 0 ? (
+        <p className="text-md text-muted-foreground">Nothing yet.</p>
       ) : (
-        <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-        </svg>
+        <ul className="space-y-8">
+          {entries.map((entry) => {
+            const { year, title } = logCaption(entry);
+            return (
+              <li key={`${entry.date}-${entry.text}`}>
+                <figure>
+                  {entry.thumbnail ? (
+                    <img
+                      src={entry.thumbnail}
+                      alt={entry.text}
+                      width={360}
+                      height={360}
+                      className="w-full"
+                    />
+                  ) : null}
+                  <figcaption className="mt-3 text-md text-foreground">
+                    <time dateTime={entry.date} className="text-muted-foreground">
+                      {year}
+                    </time>{" "}
+                    {title}
+                  </figcaption>
+                </figure>
+              </li>
+            );
+          })}
+        </ul>
       )}
-    </button>
+    </section>
   );
 }
 
 function App() {
   return (
     <div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
-      <nav className="group flex items-center gap-3 py-6">
+      <main className="py-6">
         <a
           href="/"
-          className="text-2xl hover:text-accent-hover transition-colors"
+          className="inline-block text-2xl hover:text-accent-hover transition-colors mb-8"
         >
           {content.name}
         </a>
-        <ThemeToggle />
-      </nav>
-
-      <main className="py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[2fr_1fr_1fr] gap-10">
-          <section className="sm:col-span-2 xl:col-span-1 xl:max-w-[550px]">
-            <div className="mb-8">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
-                Bio
-              </h2>
-              <div className="space-y-4 text-md text-foreground">
-                {content.bio.map((paragraph, i) => (
-                  <BioMarkdown key={i} text={paragraph} />
-                ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 xl:items-start">
+          <section className="space-y-8">
+            <div>
+              <SectionLabel>Bio</SectionLabel>
+              <div className="text-md text-foreground">
+                <BioMarkdown text={content.bio} />
               </div>
             </div>
+            <Photo />
+          </section>
 
+          <section className="space-y-8">
+            {content.lists.map((list) => (
+              <div key={list.title}>
+                <SectionLabel>{list.title}</SectionLabel>
+                <ul className="text-md text-foreground">
+                  {list.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
-                Social
-              </h2>
+              <SectionLabel>Social</SectionLabel>
               <div className="flex gap-5 items-center">
                 {content.social.map((s) => {
                   const path = SOCIAL_ICONS[s.icon];
@@ -137,35 +171,7 @@ function App() {
             </div>
           </section>
 
-          <section className="space-y-8">
-            {content.lists.map((list) => (
-              <div key={list.title}>
-                <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
-                  {list.title}
-                </h2>
-                <ul className="text-md text-foreground">
-                  {list.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </section>
-
-          <section>
-            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
-              Photo
-            </h2>
-            <img
-              src={content.photo.src}
-              alt={content.photo.alt}
-              width={800}
-              height={800}
-              loading="lazy"
-              decoding="async"
-              className="w-full rounded-sm"
-            />
-          </section>
+          <Log />
         </div>
       </main>
     </div>

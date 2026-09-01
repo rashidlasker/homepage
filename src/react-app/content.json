@@ -1,32 +1,59 @@
 {
 	"name": "Rashid Lasker",
 	"resumeUrl": "https://www.docdroid.net/qwKrlFH/rashid-lasker-resume-colored-pdf",
-	"bio": [
-		"Hey there, I'm Rashid, a builder with an interest in interfaces, complex frontend systems, and user interactions.",
-		"I'm currently at xAI building [grok.com](https://grok.com/). In the past, I built complex labeling systems at Scale AI and worked on 3D high-definition maps at Uber. I also developed a system design course at a nonprofit called HackCville while studying at the University of Virginia.",
-		":^)"
-	],
+	"bio": "making tokens useful [@spacexai](https://x.com/spacexai)",
 	"social": [
-		{ "name": "GitHub", "url": "https://github.com/rashidlasker", "icon": "github" },
-		{ "name": "X", "url": "https://x.com/rashidlasker", "icon": "x" },
-		{ "name": "Spotify", "url": "https://open.spotify.com/user/22cxvog4zrc6ynlg4p26vbdtq", "icon": "spotify" }
+		{
+			"name": "GitHub",
+			"url": "https://github.com/rashidlasker",
+			"icon": "github"
+		},
+		{
+			"name": "X",
+			"url": "https://x.com/rashidlasker",
+			"icon": "x"
+		},
+		{
+			"name": "Spotify",
+			"url": "https://open.spotify.com/user/22cxvog4zrc6ynlg4p26vbdtq",
+			"icon": "spotify"
+		}
 	],
 	"lists": [
 		{
 			"title": "What I Do",
-			"items": ["Fullstack Development", "Product Engineering", "User Research"]
+			"items": [
+				"Fullstack Development",
+				"Product Engineering",
+				"User Research"
+			]
 		},
 		{
 			"title": "Books I Like",
-			"items": ["The Design of Everyday Things", "The Three-Body Problem", "The Overstory"]
+			"items": [
+				"The Design of Everyday Things",
+				"The Three-Body Problem",
+				"The Overstory"
+			]
 		},
 		{
 			"title": "Hobbies",
-			"items": ["Backpacking", "Snowboarding", "Coastal Foraging"]
+			"items": [
+				"Backpacking",
+				"Snowboarding",
+				"Coastal Foraging"
+			]
 		}
 	],
 	"photo": {
 		"src": "/dolomites.jpg",
 		"alt": "Rashid Lasker in the Dolomites"
-	}
+	},
+	"log": [
+		{
+			"date": "2026",
+			"text": "Russian River",
+			"thumbnail": "/log/russian-river-2026.jpg"
+		}
+	]
 }
