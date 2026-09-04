@@ -27,7 +27,7 @@ function logCaption(entry: LogEntry): { year: string; title: string } {
 
 function SectionLabel({ children }: { children: string }) {
   return (
-    <h2 className="text-base font-semibold uppercase tracking-[0.2em] text-ring mb-3">
+    <h2 className="text-base font-semibold uppercase tracking-[0.14em] sm:tracking-[0.2em] text-ring mb-3">
       {children}
     </h2>
   );
@@ -57,18 +57,15 @@ function BioMarkdown({ text }: { text: string }) {
 
 function Photo() {
   return (
-    <div>
-      <SectionLabel>Photo</SectionLabel>
-      <img
-        src={content.photo.src}
-        alt={content.photo.alt}
-        width={800}
-        height={800}
-        loading="lazy"
-        decoding="async"
-        className="w-full max-w-[360px]"
-      />
-    </div>
+    <img
+      src={content.photo.src}
+      alt={content.photo.alt}
+      width={800}
+      height={800}
+      loading="lazy"
+      decoding="async"
+      className="w-full max-w-[360px]"
+    />
   );
 }
 
@@ -117,10 +114,10 @@ function Log() {
 function App() {
   return (
     <div className="min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
-      <main className="py-6">
+      <main className="pt-4 pb-6">
         <a
           href="/"
-          className="inline-block text-2xl hover:text-accent-hover transition-colors mb-8"
+          className="inline-block text-3xl hover:text-accent-hover transition-colors mb-6"
         >
           {content.name}
         </a>
@@ -161,7 +158,7 @@ function App() {
                       title={s.name}
                       className="text-accent hover:text-accent-hover transition-colors"
                     >
-                      <svg className="size-10" viewBox="12 12 40 40">
+                      <svg className="size-[28px]" viewBox="12 12 40 40">
                         <path fill="currentColor" d={path} />
                       </svg>
                     </a>
