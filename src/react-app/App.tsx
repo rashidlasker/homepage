@@ -27,7 +27,7 @@ function logCaption(entry: LogEntry): { year: string; title: string } {
 
 function SectionLabel({ children }: { children: string }) {
   return (
-    <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ring mb-3">
+    <h2 className="text-base font-semibold uppercase tracking-[0.2em] text-ring mb-3">
       {children}
     </h2>
   );
